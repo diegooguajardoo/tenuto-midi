@@ -29,10 +29,29 @@
 		// const mySynth = WebMidi.getInputByName("TYPE NAME HERE!")
 
 		mySynth.channels[1].addListener("noteon", e => {
-			document.body.innerHTML += `${e.note.name} <br>`;
+			document.body.innerHTML += `<b>${e.note.name}</b> <br>`;
 		});
 
-		
+		WebMidi
+			.enable()
+			.then(onEnabled)
+			.catch(err => alert(err));
+
+		function onEnabled() {
+
+			// Inputs
+			WebMidi.inputs.forEach(input => console.log(input.manufacturer, input.name));
+
+			// Outputs
+			WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
+
+			const myInput = WebMidi.getInputByName("DigitalKBD");
+			const mySynth = myInput.channels[1]; // <-- the MIDI channel (10)
+
+			mySynth.addListener("noteon", e => {
+				console.log(e.note.identifier, e.message.channel);
+			})
+		}		
 
 	}
 </script>
