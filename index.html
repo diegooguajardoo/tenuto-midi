@@ -24,8 +24,15 @@
 			});
 		}
 
-	}
+		// This part was added on step 3
+		const mySynth = WebMidi.inputs[0];
+		// const mySynth = WebMidi.getInputByName("TYPE NAME HERE!")
 
+		mySynth.channels[1].addListener("noteon", e => {
+			document.body.innerHTML += `${e.note.name} <br>`;
+		});
+
+	}
 </script>
 </head>
 
