@@ -19,13 +19,9 @@
 		if (WebMidi.inputs.length < 1) {
 			document.body.innerHTML += "No device detected.";
 		} else {
-			// Inputs
-			WebMidi.inputs.forEach(input => console.log(input.manufacturer, input.name));
-
-			// Outputs
-			WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
-
-		};
+			WebMidi.inputs.forEach((device, index) => {
+				document.body.innerHTML += `${index}: ${device.name} <br>`;
+		});
 		}
 
 		// This part was added on step 3
@@ -38,7 +34,7 @@
 
 		
 
-	
+	}
 </script>
 <script src="node_modules/webmidi/dist/iife/webmidi.iife.js"></script>
 </head>
