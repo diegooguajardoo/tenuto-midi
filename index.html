@@ -33,6 +33,21 @@
 		});
 
 	}
+// I guess it goes here
+	WebMidi
+		.enable()
+		.then(onEnabled)
+		.catch(err => alert(err));
+
+	function onEnabled() {
+
+		// Inputs
+		WebMidi.inputs.forEach(input => console.log(input.manufacturer, input.name));
+
+		// Outputs
+		WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
+
+	}
 </script>
 <script src="node_modules/webmidi/dist/iife/webmidi.iife.js"></script>
 </head>
