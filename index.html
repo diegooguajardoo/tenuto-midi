@@ -19,9 +19,13 @@
 		if (WebMidi.inputs.length < 1) {
 			document.body.innerHTML += "No device detected.";
 		} else {
-			WebMidi.inputs.forEach((device, index) => {
-				document.body.innerHTML += `${index}: ${device.name} <br>`;
-			});
+			// Inputs
+			WebMidi.inputs.forEach(input => console.log(input.manufacturer, input.name));
+
+			// Outputs
+			WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
+
+		});
 		}
 
 		// This part was added on step 3
@@ -33,19 +37,6 @@
 		});
 
 	}
-// I guess it goes here
-	WebMidi
-		.enable()
-		.then(onEnabled)
-		.catch(err => alert(err));
-
-	function onEnabled() {
-
-		// Inputs
-		WebMidi.inputs.forEach(input => console.log(input.manufacturer, input.name));
-
-		// Outputs
-		WebMidi.outputs.forEach(output => console.log(output.manufacturer, output.name));
 
 	}
 </script>
